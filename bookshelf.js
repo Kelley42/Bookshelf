@@ -51,11 +51,43 @@ function showLibrary() {
     })
 }
 
+// function addBookForm() {
+//     const new_book = document.createElement("div");
+//     new_book.classList.add("new-book");
+
+//     const new_book_heading = document.createElement("h2");
+//     new_book_heading.classList.add("new-book-heading");
+//     new_book_heading.innerHTML = "New Book";
+//     new_book.appendChild(new_book_heading);
+//     const new_book_title = document.createElement("div");
+//     new_book_title.classList.add("new-book-title");
+//     new_book.appendChild(new_book_title);
+//     const new_book_author = document.createElement("div");
+//     new_book_author.classList.add("new-book-author");
+//     new_book.appendChild(new_book_author);
+//     const new_book_pages = document.createElement("div");
+//     new_book_pages.classList.add("new-book-pages");
+//     new_book.appendChild(new_book_pages);
+//     const new_book_read = document.createElement("div");
+//     new_book_read.classList.add("new-book-read");
+//     new_book.appendChild(new_book_read);
+
+//     form.appendChild(new_book);
+// }
+
+function showAddBookForm() {
+
+}
+
+
 const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "have read");
 const nineteen_eightyfour = new Book("1984", "George Orwell", 328, "have read");
 const war_and_peace = new Book("War and Peace", "Leo Tolstoy", 1296, "haven't read yet");
 
-const card_container = document.querySelector(".card-container")
+const card_container = document.querySelector(".card-container");
+const form = document.querySelector(".new-book-form")
+const add_book_btn = document.querySelector("#new-book-btn");
+add_book_btn.addEventListener("click", showAddBookForm);
 
 addBookToLibrary();
 // console.log(thehobbit.info())
