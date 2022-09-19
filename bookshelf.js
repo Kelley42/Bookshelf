@@ -7,22 +7,15 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
+// Set Book prototype
 Book.prototype.info = function() {
     return(`${this.title} by ${this.author}, ${this.pages}, ${this.isRead}`);
 }
 
-// Book.prototype.toggleRead = function() {
-//     if (isRead == false)
-//         isRead == true
-//     else
-//         isRead == false
-// }
-
 function addBookToLibrary() {
+    // Add initial books
     myLibrary.push(thehobbit, nineteen_eightyfour, war_and_peace);
 }
-
-
 
 function showLibrary() {
     myLibrary.forEach(i => {
@@ -51,34 +44,38 @@ function showLibrary() {
     })
 }
 
-// function addBookForm() {
-//     const new_book = document.createElement("div");
-//     new_book.classList.add("new-book");
-
-//     const new_book_heading = document.createElement("h2");
-//     new_book_heading.classList.add("new-book-heading");
-//     new_book_heading.innerHTML = "New Book";
-//     new_book.appendChild(new_book_heading);
-//     const new_book_title = document.createElement("div");
-//     new_book_title.classList.add("new-book-title");
-//     new_book.appendChild(new_book_title);
-//     const new_book_author = document.createElement("div");
-//     new_book_author.classList.add("new-book-author");
-//     new_book.appendChild(new_book_author);
-//     const new_book_pages = document.createElement("div");
-//     new_book_pages.classList.add("new-book-pages");
-//     new_book.appendChild(new_book_pages);
-//     const new_book_read = document.createElement("div");
-//     new_book_read.classList.add("new-book-read");
-//     new_book.appendChild(new_book_read);
-
-//     form.appendChild(new_book);
-// }
-
-function showAddBookForm() {
-
+function hideAddBookForm() {
+    form.style.display = "none";
 }
 
+function showAddBookForm() {
+    form.style.display = "block";
+}
+
+function addNewBook() {
+    
+
+    // Add new book to library array
+    const new_book = new Book(new_book_title.value, new_book_author.value, new_book_pages.value, new_book_read.value);
+    myLibrary.push(new_book);
+
+    // Erase old library display
+    card_container.innerHTML = "";
+
+    // Show new library
+    showLibrary();
+
+    // Close form
+    hideAddBookForm();
+}
+
+
+// Book.prototype.toggleRead = function() {
+//     if (isRead == false)
+//         isRead == true
+//     else
+//         isRead == false
+// }
 
 const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "have read");
 const nineteen_eightyfour = new Book("1984", "George Orwell", 328, "have read");
@@ -86,10 +83,37 @@ const war_and_peace = new Book("War and Peace", "Leo Tolstoy", 1296, "haven't re
 
 const card_container = document.querySelector(".card-container");
 const form = document.querySelector(".new-book-form")
-const add_book_btn = document.querySelector("#new-book-btn");
-add_book_btn.addEventListener("click", showAddBookForm);
+const new_book_btn = document.querySelector("#new-book-btn");
+new_book_btn.addEventListener("click", showAddBookForm);
+const add_book_btn = document.querySelector("#add-book-btn");
+add_book_btn.addEventListener("click", addNewBook);
+const have_read_label = document.querySelector("dt")
 
+
+hideAddBookForm();
 addBookToLibrary();
 // console.log(thehobbit.info())
 // console.log(myLibrary[0]);
 showLibrary();
+
+// Add new book form
+const new_book_title = document.querySelector("#new-book-title");
+const new_book_author = document.querySelector("#new-book-author");
+const new_book_pages = document.querySelector("#new-book-pages");
+const new_book_read = document.querySelector("#new-book-read");
+new_book_read.addEventListener("click", () => {
+    if (new_book_read.checked == false) { 
+        new_book_read.value = "haven't read yet";
+        have_read_label.innerHTML = "Haven't Read Yet";
+    } else { 
+        new_book_read.value = "have read";
+        have_read_label.innerHTML = "Have Read";
+    }
+});
+
+// Set new_book_read value
+new_book_read.value = "have read";
+have_read_label.innerHTML = "Have Read";
+
+
+

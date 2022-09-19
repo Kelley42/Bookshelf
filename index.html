@@ -16,7 +16,7 @@
             <fieldset>
                 <div class="input_fields">
                     <label for="new-book-title"></label>
-                    <input type="text" id="new-book-title" name="new-book-title" placeholder= "Title" maxlength="50" required>
+                    <input type="text" id="new-book-title" name="new-book-title" placeholder= "Title" autocomplete="off" maxlength="50" required>
                 </div>
                 <div class="input_fields">
                     <label for="new-book-author"></label>
@@ -24,16 +24,17 @@
                 </div>
                 <div class="input_fields">
                     <label for="new-book-pages"></label>
-                    <input type="text" id="new-book-pages" name="new-book-pages" placeholder="Number of Pages" maxlength="6">
+                    <input type="text" id="new-book-pages" name="new-book-pages" placeholder="Number of Pages" maxlength="6" autocomplete="off">
                 </div>
                 <div class="input_fields">
                     <div id="radio-button">
                         <dl>
-                            <dt>Have Read: &emsp;<label class="switch"><input type="checkbox" checked><span class="switchslider"></span></label></dt>
+                            <label class="switch"><input type="checkbox" id="new-book-read" checked><span class="switchslider"></span></label><dt>Have Read</dt>
                         </dl>
                     </div>
                 </div>
             </fieldset>
+            <button type="button" id="add-book-btn">Add</button>
         </div>
     </form>
     <button type="button" id="new-book-btn">Add New Book</button>
