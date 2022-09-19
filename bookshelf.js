@@ -18,9 +18,12 @@ function addBookToLibrary() {
 }
 
 function showLibrary() {
-    myLibrary.forEach(i => {
+    myLibrary.forEach(function(i, index) {
         const card = document.createElement("div");
         card.classList.add("card");
+        // card.setAttribute("data-index", index)
+        // console.log(card["data-index"])
+        card.dataset.test = index;
 
         const title = document.createElement("div");
         title.classList.add("title");
