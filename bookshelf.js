@@ -53,9 +53,6 @@ function showAddBookForm() {
 }
 
 function addNewBook() {
-    
-
-    // Add new book to library array
     const new_book = new Book(new_book_title.value, new_book_author.value, new_book_pages.value, new_book_read.value);
     myLibrary.push(new_book);
 
@@ -65,10 +62,10 @@ function addNewBook() {
     // Show new library
     showLibrary();
 
-    // Close form
+    // Reset and close form
+    form.reset();
     hideAddBookForm();
 }
-
 
 // Book.prototype.toggleRead = function() {
 //     if (isRead == false)
@@ -85,6 +82,8 @@ const card_container = document.querySelector(".card-container");
 const form = document.querySelector(".new-book-form")
 const new_book_btn = document.querySelector("#new-book-btn");
 new_book_btn.addEventListener("click", showAddBookForm);
+const cancel_book_btn = document.querySelector("#cancel-book-btn");
+cancel_book_btn.addEventListener("click", hideAddBookForm);
 const add_book_btn = document.querySelector("#add-book-btn");
 add_book_btn.addEventListener("click", addNewBook);
 const have_read_label = document.querySelector("dt")
