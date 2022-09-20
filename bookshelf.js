@@ -5,11 +5,24 @@ function Book(title, author, pages, isRead) {
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+    // isRead = false;
 }
 
 Book.prototype.info = function() {
     return(`${this.title} by ${this.author}, ${this.pages}, ${this.isRead}`);
 }
+
+// Book.prototype.toggleRead = function() {
+//     console.log("hi")
+//     const read_btn = document.querySelector(".read")
+//     read_btn.addEventListener("click", () => {
+//         console.log("bye")
+//         if (isRead == "haven't read yet")
+//             isRead = "have read"
+//         else
+//             isRead = "haven't read yet"
+//     })
+// }
 
 function addBookToLibrary() {
     // Add initial books
@@ -20,8 +33,6 @@ function showLibrary() {
     myLibrary.forEach(function(i, index) {
         const card = document.createElement("div");
         card.classList.add("card");
-        // card.setAttribute("data-index", index)
-        // console.log(card["data-index"])
         card.dataset.indexNum = index;
 
         const title = document.createElement("div");
@@ -33,8 +44,18 @@ function showLibrary() {
         const pages = document.createElement("div");
         pages.classList.add("pages");
         card.appendChild(pages);
-        const read = document.createElement("div");
+        const read = document.createElement("button");
         read.classList.add("read");
+        read.addEventListener("click", () => {
+            // Change button HTML and myLibrary array
+            if (read.innerHTML == "Haven't Read Yet") { 
+                read.innerHTML = "Have Read";
+                myLibrary[index].isRead = "Have Read"
+            } else { 
+                read.innerHTML = "Haven't Read Yet"
+                myLibrary[index].isRead = "Haven't Read Yet"
+            }
+        });
         card.appendChild(read);
         const delete_book_btn = document.createElement("button");
         delete_book_btn.classList.add("delete-book-btn");
@@ -42,6 +63,7 @@ function showLibrary() {
         delete_book_btn.addEventListener("click", () => {
             // Delete book
             let book_index = card.dataset.indexNum;
+            console.log(book_index)
             if (book_index == 0) {
                 myLibrary = myLibrary.slice(1);
             } else {
@@ -88,16 +110,9 @@ function addNewBook() {
 }
 
 
-// Book.prototype.toggleRead = function() {
-//     if (isRead == false)
-//         isRead == true
-//     else
-//         isRead == false
-// }
-
-const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "have read");
-const nineteen_eightyfour = new Book("1984", "George Orwell", 328, "have read");
-const war_and_peace = new Book("War and Peace", "Leo Tolstoy", 1296, "haven't read yet");
+const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Have Read");
+const nineteen_eightyfour = new Book("1984", "George Orwell", 328, "Have Read");
+const war_and_peace = new Book("War and Peace", "Leo Tolstoy", 1296, "Haven't Read Yet");
 
 const card_container = document.querySelector(".card-container");
 const form = document.querySelector(".new-book-form")
