@@ -7,7 +7,6 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
-// Set Book prototype
 Book.prototype.info = function() {
     return(`${this.title} by ${this.author}, ${this.pages}, ${this.isRead}`);
 }
@@ -23,7 +22,7 @@ function showLibrary() {
         card.classList.add("card");
         // card.setAttribute("data-index", index)
         // console.log(card["data-index"])
-        card.dataset.test = index;
+        card.dataset.indexNum = index;
 
         const title = document.createElement("div");
         title.classList.add("title");
@@ -37,6 +36,24 @@ function showLibrary() {
         const read = document.createElement("div");
         read.classList.add("read");
         card.appendChild(read);
+        const delete_book_btn = document.createElement("button");
+        delete_book_btn.classList.add("delete-book-btn");
+        delete_book_btn.innerHTML = "Remove Book";
+        delete_book_btn.addEventListener("click", () => {
+            // Delete book
+            let book_index = card.dataset.indexNum;
+            if (book_index == 0) {
+                myLibrary = myLibrary.slice(1);
+            } else {
+                myLibrary = myLibrary.splice(0, 1, book_index);
+            }
+            // Erase old library display
+            card_container.innerHTML = "";
+
+            // Show new library
+            showLibrary();
+        });
+        card.appendChild(delete_book_btn);
 
         card_container.appendChild(card);
 
@@ -69,6 +86,7 @@ function addNewBook() {
     form.reset();
     hideAddBookForm();
 }
+
 
 // Book.prototype.toggleRead = function() {
 //     if (isRead == false)
