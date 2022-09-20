@@ -67,7 +67,7 @@ function showLibrary() {
             if (book_index == 0) {
                 myLibrary = myLibrary.slice(1);
             } else {
-                myLibrary = myLibrary.splice(0, 1, book_index);
+                myLibrary.splice(book_index, 1);
             }
             // Erase old library display
             card_container.innerHTML = "";
