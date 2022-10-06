@@ -1,11 +1,13 @@
 let myLibrary = [];
 
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    // isRead = false;
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+        // isRead = false;
+    }
 }
 
 Book.prototype.info = function() {
@@ -149,6 +151,3 @@ new_book_read.addEventListener("click", () => {
 // Set new_book_read value
 new_book_read.value = "have read";
 have_read_label.innerHTML = "Have Read";
-
-
-
