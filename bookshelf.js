@@ -98,6 +98,22 @@ function hideAddBookForm() {
 
 function showAddBookForm() {
     form.style.display = "block";
+    document.querySelector("#new-book-title").focus();
+
+    new_book_read.addEventListener("click", () => {
+        console.log(new_book_read.value)
+        if (new_book_read.checked == false) { 
+            new_book_read.value = "haven't read yet";
+            have_read_label.innerHTML = "Haven't Read Yet";
+        } else { 
+            new_book_read.value = "have read";
+            have_read_label.innerHTML = "Have Read";
+        }
+    });
+    
+    // Set new_book_read value
+    new_book_read.value = "haven't read yet";
+    have_read_label.innerHTML = "Haven't Read Yet";
     //addRequiredInputs();
 }
 
@@ -166,17 +182,5 @@ const new_book_title = document.querySelector("#new-book-title");
 const new_book_author = document.querySelector("#new-book-author");
 const new_book_pages = document.querySelector("#new-book-pages");
 const new_book_read = document.querySelector("#new-book-read");
-new_book_read.addEventListener("click", () => {
-    if (new_book_read.checked == false) { 
-        new_book_read.value = "haven't read yet";
-        have_read_label.innerHTML = "Haven't Read Yet";
-    } else { 
-        new_book_read.value = "have read";
-        have_read_label.innerHTML = "Have Read";
-    }
-});
 
-// Set new_book_read value
-new_book_read.value = "haven't read yet";
-have_read_label.innerHTML = "Haven't Read Yet";
 
