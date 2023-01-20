@@ -4,43 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="bookshelf.js" defer></script>
     <link rel="stylesheet" href="styles.css">
     <title>Bookshelf</title>
 </head>
 <body>
     <h1>Bookshelf</h1>
-    <form action="" class="new-book-form">
+    <form action="" method="get" class="new-book-form">
         <div class="new-book">
             <h2>New Book</h2>
-            <fieldset>
-                <div class="input_fields">
-                    <label for="new-book-title"></label>
-                    <input type="text" id="new-book-title" name="new-book-title" placeholder= "Title" autocomplete="off" maxlength="50" required>
-                </div>
-                <div class="input_fields">
-                    <label for="new-book-author"></label>
-                    <input type="text" id="new-book-author" name="new-book-author" placeholder="Author" maxlength="30">
-                </div>
-                <div class="input_fields">
-                    <label for="new-book-pages"></label>
-                    <input type="text" id="new-book-pages" name="new-book-pages" placeholder="Number of Pages" maxlength="6" autocomplete="off">
-                </div>
-                <div class="input_fields">
-                    <div id="radio-button">
-                        <dl>
-                            <label class="switch"><input type="checkbox" id="new-book-read" unchecked><span class="switchslider"></span></label><dt>Have Read</dt>
-                        </dl>
-                    </div>
-                </div>
-            </fieldset>
+            <div class="input_fields">
+                <label for="new-book-title"></label>
+                <input type="text" class="new-input-fields" id="new-book-title" name="new-book-title" placeholder= "Title" autocomplete="off" maxlength="50" required>
+            </div>
+            <div class="input_fields">
+                <label for="new-book-author"></label>
+                <input type="text" class="new-input-fields" id="new-book-author" name="new-book-author" placeholder="Author" maxlength="30" required>
+            </div>
+            <div class="input_fields">
+                <label for="new-book-pages"></label>
+                <input type="number" class="new-input-fields" id="new-book-pages" name="new-book-pages" placeholder="Number of Pages" maxlength="6" autocomplete="off" required>
+            </div>
+            <div class="input_fields-switch" id="radio-button">
+                <!-- <div id="radio-button"> -->
+                <dl>
+                    <label class="switch"><input type="checkbox" id="new-book-read" unchecked><span class="switchslider"></span></label><dt>Haven't Read Yet</dt>
+                </dl>
+                <!-- </div> -->
+            </div>
             <div class="new-book-button-field">
                 <button type="button" id="cancel-book-btn">Cancel</button>
-                <button type="button" id="add-book-btn">Add</button>
+                <button type="submit" id="add-book-btn" value="Add">Add</button>
             </div>
         </div>
     </form>
     <button type="button" id="new-book-btn">Add New Book</button>
     <div class="card-container"></div>
 </body>
+<script src="bookshelf.js"></script>
 </html>

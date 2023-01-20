@@ -26,7 +26,11 @@ Book.prototype.info = function() {
 //     })
 // }
 
-function addBookToLibrary() {
+const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Have Read");
+const nineteen_eightyfour = new Book("1984", "George Orwell", 328, "Have Read");
+const war_and_peace = new Book("War and Peace", "Leo Tolstoy", 1296, "Haven't Read Yet");
+
+function showDefaultBooks() {
     // Add initial books
     myLibrary.push(thehobbit, nineteen_eightyfour, war_and_peace);
 }
@@ -65,7 +69,6 @@ function showLibrary() {
         delete_book_btn.addEventListener("click", () => {
             // Delete book
             let book_index = card.dataset.indexNum;
-            console.log(book_index)
             if (book_index == 0) {
                 myLibrary = myLibrary.slice(1);
             } else {
@@ -90,13 +93,24 @@ function showLibrary() {
 
 function hideAddBookForm() {
     form.style.display = "none";
+    //removeRequiredInputs();
 }
 
 function showAddBookForm() {
     form.style.display = "block";
+    //addRequiredInputs();
 }
 
-function addNewBook() {
+// function checkForInvalidInputs() {
+//     document.querySelectorAll(".new-input-fields").forEach(i => {
+//         console.log(i.getAttribute("required"))
+//     })
+    
+// }
+
+function addNewBook(e) {
+    e.preventDefault();
+    //checkForInvalidInputs();
     const new_book = new Book(new_book_title.value, new_book_author.value, new_book_pages.value, new_book_read.value);
     myLibrary.push(new_book);
 
@@ -111,10 +125,19 @@ function addNewBook() {
     hideAddBookForm();
 }
 
+// function addRequiredInputs() {
+//     document.querySelector("#new-book-title").setAttribute("required", "");
+//     document.querySelector("#new-book-author").setAttribute("required", "");
+//     document.querySelector("#new-book-pages").setAttribute("required", "");
+// }
 
-const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Have Read");
-const nineteen_eightyfour = new Book("1984", "George Orwell", 328, "Have Read");
-const war_and_peace = new Book("War and Peace", "Leo Tolstoy", 1296, "Haven't Read Yet");
+// function removeRequiredInputs() {
+//     document.querySelector("#new-book-title").removeAttribute("required");
+//     document.querySelector("#new-book-author").removeAttribute("required");
+//     document.querySelector("#new-book-pages").removeAttribute("required");
+// }
+
+
 
 const card_container = document.querySelector(".card-container");
 const form = document.querySelector(".new-book-form")
@@ -123,15 +146,20 @@ new_book_btn.addEventListener("click", showAddBookForm);
 const cancel_book_btn = document.querySelector("#cancel-book-btn");
 cancel_book_btn.addEventListener("click", hideAddBookForm);
 const add_book_btn = document.querySelector("#add-book-btn");
-add_book_btn.addEventListener("click", addNewBook);
+//add_book_btn.addEventListener("submit", addNewBook);
+form.onsubmit = addNewBook.bind(form);
 const have_read_label = document.querySelector("dt")
 
+function initialSetup() {
+    hideAddBookForm();
+    showDefaultBooks();
+    // console.log(thehobbit.info())
+    // console.log(myLibrary[0]);
+    showLibrary();
+}
 
-hideAddBookForm();
-addBookToLibrary();
-// console.log(thehobbit.info())
-// console.log(myLibrary[0]);
-showLibrary();
+initialSetup();
+
 
 // Add new book form
 const new_book_title = document.querySelector("#new-book-title");
@@ -149,5 +177,6 @@ new_book_read.addEventListener("click", () => {
 });
 
 // Set new_book_read value
-new_book_read.value = "have read";
-have_read_label.innerHTML = "Have Read";
+new_book_read.value = "haven't read yet";
+have_read_label.innerHTML = "Haven't Read Yet";
+
