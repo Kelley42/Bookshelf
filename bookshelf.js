@@ -15,10 +15,8 @@ Book.prototype.info = function() {
 }
 
 // Book.prototype.toggleRead = function() {
-//     console.log("hi")
 //     const read_btn = document.querySelector(".read")
 //     read_btn.addEventListener("click", () => {
-//         console.log("bye")
 //         if (isRead == "haven't read yet")
 //             isRead = "have read"
 //         else
@@ -68,7 +66,7 @@ function showLibrary() {
                 myLibrary[index].isRead = "Not Read"
             }
         });
-
+        
         const deleteBookBtn = document.createElement("button");
         deleteBookBtn.classList.add("delete-book-btn");
         deleteBookBtn.innerHTML = "Remove Book";
@@ -100,7 +98,6 @@ function showLibrary() {
 
 function hideAddBookForm() {
     form.style.display = "none";
-    //removeRequiredInputs();
 }
 
 function showAddBookForm() {
@@ -108,32 +105,22 @@ function showAddBookForm() {
     document.querySelector("#new-book-title").focus();
 
     new_book_read.addEventListener("click", () => {
-        console.log(new_book_read.value)
         if (new_book_read.checked == false) { 
-            new_book_read.value = "haven't read yet";
-            have_read_label.innerHTML = "Haven't Read Yet";
+            new_book_read.value = "Not Read";
+            have_read_label.innerHTML = "Not Read";
         } else { 
-            new_book_read.value = "have read";
-            have_read_label.innerHTML = "Have Read";
+            new_book_read.value = "Read";
+            have_read_label.innerHTML = "Read";
         }
     });
     
     // Set new_book_read value
-    new_book_read.value = "haven't read yet";
-    have_read_label.innerHTML = "Haven't Read Yet";
-    //addRequiredInputs();
+    new_book_read.value = "Not Read";
+    have_read_label.innerHTML = "Not Read";
 }
-
-// function checkForInvalidInputs() {
-//     document.querySelectorAll(".new-input-fields").forEach(i => {
-//         console.log(i.getAttribute("required"))
-//     })
-    
-// }
 
 function addNewBook(e) {
     e.preventDefault();
-    //checkForInvalidInputs();
     const new_book = new Book(new_book_title.value, new_book_author.value, new_book_pages.value, new_book_read.value);
     myLibrary.push(new_book);
 
@@ -147,20 +134,6 @@ function addNewBook(e) {
     form.reset();
     hideAddBookForm();
 }
-
-// function addRequiredInputs() {
-//     document.querySelector("#new-book-title").setAttribute("required", "");
-//     document.querySelector("#new-book-author").setAttribute("required", "");
-//     document.querySelector("#new-book-pages").setAttribute("required", "");
-// }
-
-// function removeRequiredInputs() {
-//     document.querySelector("#new-book-title").removeAttribute("required");
-//     document.querySelector("#new-book-author").removeAttribute("required");
-//     document.querySelector("#new-book-pages").removeAttribute("required");
-// }
-
-
 
 const card_container = document.querySelector(".card-container");
 const form = document.querySelector(".new-book-form")
