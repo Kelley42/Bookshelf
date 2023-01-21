@@ -26,9 +26,9 @@ Book.prototype.info = function() {
 //     })
 // }
 
-const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Have Read");
-const nineteen_eightyfour = new Book("1984", "George Orwell", 328, "Have Read");
-const war_and_peace = new Book("War and Peace", "Leo Tolstoy", 1296, "Haven't Read Yet");
+const thehobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Read");
+const nineteen_eightyfour = new Book("1984", "George Orwell", 328, "Read");
+const war_and_peace = new Book("War and Peace", "Leo Tolstoy", 1296, "Not Read");
 
 function showDefaultBooks() {
     // Add initial books
@@ -41,32 +41,38 @@ function showLibrary() {
         card.classList.add("card");
         card.dataset.indexNum = index;
 
+        const innerCard = document.createElement("div");
+        innerCard.classList.add("inner-card");
+
         const title = document.createElement("div");
         title.classList.add("title");
-        card.appendChild(title);
+        
         const author = document.createElement("div");
         author.classList.add("author");
-        card.appendChild(author);
+        
         const pages = document.createElement("div");
         pages.classList.add("pages");
-        card.appendChild(pages);
+        
+        const bookBtns = document.createElement("div");
+        bookBtns.classList.add("book-btns");
+
         const read = document.createElement("button");
         read.classList.add("read");
         read.addEventListener("click", () => {
             // Change button HTML and myLibrary array
-            if (read.innerHTML == "Haven't Read Yet") { 
-                read.innerHTML = "Have Read";
-                myLibrary[index].isRead = "Have Read"
+            if (read.innerHTML == "Not Read") { 
+                read.innerHTML = "Read";
+                myLibrary[index].isRead = "Read"
             } else { 
-                read.innerHTML = "Haven't Read Yet"
-                myLibrary[index].isRead = "Haven't Read Yet"
+                read.innerHTML = "Not Read"
+                myLibrary[index].isRead = "Not Read"
             }
         });
-        card.appendChild(read);
-        const delete_book_btn = document.createElement("button");
-        delete_book_btn.classList.add("delete-book-btn");
-        delete_book_btn.innerHTML = "Remove Book";
-        delete_book_btn.addEventListener("click", () => {
+
+        const deleteBookBtn = document.createElement("button");
+        deleteBookBtn.classList.add("delete-book-btn");
+        deleteBookBtn.innerHTML = "Remove Book";
+        deleteBookBtn.addEventListener("click", () => {
             // Delete book
             let book_index = card.dataset.indexNum;
             if (book_index == 0) {
@@ -80,8 +86,9 @@ function showLibrary() {
             // Show new library
             showLibrary();
         });
-        card.appendChild(delete_book_btn);
-
+        bookBtns.append(read, deleteBookBtn);
+        innerCard.append(title, author, pages, bookBtns);
+        card.appendChild(innerCard);
         card_container.appendChild(card);
 
         title.innerHTML = i["title"];
